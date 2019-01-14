@@ -1,0 +1,19 @@
+* {
+	box-sizing: border-box;
+}
+.main_doctor {
+	border: 1px solid red;
+	text-align: center;
+	margin-bottom: 20px;
+}
+.regular_doctor {
+	border: 1px solid red;
+	text-align: center;
+}
+.greeting {
+	width: 500px;
+	margin: 0 auto;
+	border: 1px solid red;
+	margin-bottom: 20px;
+	text-align: center;
+}
