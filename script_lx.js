@@ -148,23 +148,30 @@ function renderGreetingPage() {
 		textChoise.innerHTML = QUIZ['choise quiz'];
 
 
-		let choise_MD = div.querySelector('.choise_MD'),
-			choise_RD = div.querySelector('.choise_RD'),
-			choise = div.querySelectorAll('input');
-			
-				// при клике на один элемент установить checked в тру, а для другого input  checked в false
-		choise_MD.addEventListener('click', function(){
-				choise[1].removeAttribute('checked');
-				choise[0].setAttribute('checked', 'checked');
+		let choise = div.querySelectorAll('input'),
+			choise_MD = choise[0],
+			choise_RD = choise[1];
 
+
+
+		if(choise_MD.checked == false && choise_RD.checked == false)
+			button_Quiz.disabled = true;
+
+				// при клике на один элемент установить checked в тру, а для другого input  checked в false
+		choise_MD.addEventListener('click', function() {
+			button_Quiz.disabled = false;
+			choise_MD.checked = true;
 		});
 
 		choise_RD.addEventListener('click', function(){
-			choise[0].removeAttribute('checked');
-			choise[1].setAttribute('checked', 'checked');
+			button_Quiz.disabled = false;
+			choise_RD.checked = true;
 		});
 
-		console.log(choise[0].hasAttribute('checked'));
+
+
+		console.log('Md:' + choise_MD.checked, 'RD:' + choise_RD.checked);
+		
 			// При клике на кнопку запускаем ф-ю отрисовки вопроса
 		button_Quiz.addEventListener('click',function (){
 			div.remove();
