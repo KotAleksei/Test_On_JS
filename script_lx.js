@@ -30,9 +30,8 @@ MD_Questions = [
 			a: 'Пониженной',
 			b: 'Повышенной',
 			c: 'Нормальной',
-			d: 'Водка'
 		},
-		'correct answer': 'd'
+		'correct answer': 'a'
 	}, 
 	{
 		'numberOfQuestion': 3,
@@ -181,7 +180,11 @@ function renderGreetingPage() {
 
 function renderQuestions(array) {
 			let currentQuestion = num,
-			 	numberOfQuestions = array.length;
+			 	numberOfQuestions = array.length,
+			 	correctAnswer = array[currentQuestion]['correct answer'],
+			 	textAfterFails = array[currentQuestion].answer[correctAnswer];
+
+			 	
 
 
 			let divEl = document.createElement('div'),
@@ -211,31 +214,32 @@ function renderQuestions(array) {
 
 				// создание непостредственно вопросов
 				for(let key in array[currentQuestion]['answer']) {
-					let answer = document.createElement('div'),
-						correctAnswer = array[currentQuestion]['correct answer'],
-						nodeCorrectAnswer = document.getElementById(correctAnswer);
-
+					let answer = document.createElement('div');
+						
 					answersEl.append(answer);
 					answer.innerText = array[currentQuestion]['answer'][key];
 					answer.className = 'choise';
 					answer.id = key;
 
-
 					// события при выборе одного из ответов
 					answer.addEventListener('click', function(){
 						btnContainerEl.hidden = false;
 						answersEl.classList.add('disable');
+
 						if( correctAnswer === key){
 							answer.className = 'succes';
 							++result;
 						}
 						else {
 							answer.className = 'error';
-							answer.innerText += `\n Ошибка ёпта`;
 							nodeCorrectAnswer.className = 'succes';
+							answer.innerText += `\n Ошибка  \n Правильный ответ ${textAfterFails}`;
+							
 						}
 					});
 				}
+
+				let nodeCorrectAnswer = document.getElementById(correctAnswer);
 
 
 			btnEl.addEventListener('click', function(){
@@ -296,9 +300,7 @@ function haveANiceDay () {
 	titleFinish.innerText = 'Have a nice day';
 	titleFinish.className = 'finish';
 }
-function sortRandom (a,b) {
-	return Math.random() - 0.6;
-}
+
 
 renderGreetingPage();
 
