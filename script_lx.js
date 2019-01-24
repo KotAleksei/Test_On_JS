@@ -1,235 +1,304 @@
 'use strict'
 
 let QUIZ = {
-	'name' : 'Doctor QUIZ',
+	'name' : 'Тест доктора',
 	'tittle quiz': 'Профессия врач чем-то подобна копилке, копилке опыта и знаний, так как специалисту любого медицинского направления необходимо постоянно пополнять свой теоретический багаж. Этот тест поможет проверить ваши знания.',
 	'choise quiz': 'Выбирете за кого хотите пройти тест',
-	'question for': ['Main doctor', 'Recular doctor']
+	'question for': ['Глав врач', 'Врач']
 },
 // MD => Main Doctor
-MD_Qustions = [ 
+MD_Questions = [ 
 	{    
 		'numberOfQuestion': 1,
 		'name': 'question1',
-		'title question': 'MD tittle question1',
+		'title question': 'Что из этого не помогает при лечении простуды?',
 		'question': 'body question2',
-		'answer': [
-			'answer question1_1',
-			'answer question1_2',
-			'answer question1_3',
-			'answer question1_4'
-		],
-		'correct answer'() {
-			return this.answer[0];
-		}
+		'answer': {
+			a: 'Питьё',
+			b: 'Антибиотики',
+			c: 'Постельный режим',
+			d: 'Водка'
+		},
+		'correct answer': 'b'
 	}, 
 	{
 		'numberOfQuestion': 2,
 		'name': 'question2',
-		'title question': 'MD tittle question2',
+		'title question': 'Частота сердечных сокращений 60–80 ударов в минуту считается...',
 		'question': 'body question2',
-		'answer': [
-			'answer question2_1',
-			'answer question2_2',
-			'answer question2_3',
-			'answer question2_4'
-		],
-		'correct answer'() {
-			return this.answer[0];
-		}
+		'answer': {
+			a: 'Пониженной',
+			b: 'Повышенной',
+			c: 'Нормальной',
+			d: 'Водка'
+		},
+		'correct answer': 'd'
 	}, 
 	{
 		'numberOfQuestion': 3,
 		'name': 'question3',
-		'title question': 'MD tittle question3',
+		'title question': 'Сжигаем ли мы калории во время сна?',
 		'question': 'body question3',
-		'answer': [
-			'answer question3_1',
-			'answer question3_2',
-			'answer question3_3',
-			'answer question3_4'
-		],
-		'correct answer'() {
-			return this.answer[0];
-		}
+		'answer': {
+			a: 'Да',
+			b: 'Нет',
+			c: 'Может быть',
+			d: 'Зависит от веса'
+		},
+		'correct answer': 'a'
 	}],
-	RD_Qustions = [ 
+	RD_Questions = [ 
 	{    
 		'numberOfQuestion': 1,
 		'name': 'question1',
-		'title question': 'RD tittle question1',
+		'title question': 'Что из этого не относится к основным физиологическим показателям?',
 		'question': 'body question2',
-		'answer': [
-			'answer question1_1',
-			'answer question1_2',
-			'answer question1_3',
-			'answer question1_4'
-		],
-		'correct answer'() {
-			return this.answer[0];
-		}
+		'answer': {
+			a: 'Цвет волос',
+			b: 'Температура тела',
+			c: 'Пульс'
+		},
+		'correct answer': 'b'
 	}, 
 	{
 		'numberOfQuestion': 2,
 		'name': 'question2',
-		'title question': 'RD tittle question2',
+		'title question': 'Сколько всего существует групп крови?',
 		'question': 'body question2',
-		'answer': [
-			'answer question2_1',
-			'answer question2_2',
-			'answer question2_3',
-			'answer question2_4'
-		],
-		'correct answer'() {
-			return this.answer[0];
-		}
+		'answer': {
+			a: '3 (0, А, В)',
+			b: '4 (0, А, В, АВ)',
+			c: '2 (0, А)',
+			d: '5 (A, B, C, D)'
+		},
+		'correct answer': 'b'
 	}, 
 	{
 		'numberOfQuestion': 3,
 		'name': 'question3',
-		'title question': 'RD tittle question3',
+		'title question': 'Как называется прозрачная мембрана, которая проводит свет к сетчатке глаза?',
 		'question': 'body question3',
-		'answer': [
-			'answer question3_1',
-			'answer question3_2',
-			'answer question3_3',
-			'answer question3_4'
-		],
-		'correct answer'() {
-			return this.answer[0];
-		}
-	}];
+		'answer': {
+			a: 'Роговица',
+			b: 'Ресница',
+			c: 'Хрусталик',
+			d: 'Не один из перечисленных не правильный'
+		},
+		'correct answer': 'a'
+	},
+	{
+		'numberOfQuestion': 4,
+		'name': 'question4',
+		'title question': 'Где расположены близнецовые мышцы?',
+		'question': 'body question3',
+		'answer': {
+			a: 'В груди',
+			b: 'В тазу',
+			c: 'В плечах',
+			d: 'В пятке'
+		},
+		'correct answer': 'b'
+	},
+	{
+		'numberOfQuestion': 5,
+		'name': 'question5',
+		'title question': 'Какой самый точный способ измерить внутреннюю температуру тела?',
+		'question': 'body question3',
+		'answer': {
+			a: 'Под мышкой',
+			b: 'Ректально',
+			c: 'Под языком',
+			d: 'Не один из перечисленных не правильный'
+		},
+		'correct answer': 'a'
+	}
+		];
 
-let result = 0;
-let num = 0;
-
-
+let mainDiv = document.createElement('div');
+document.body.append(mainDiv);
+mainDiv.className = 'main_wrapper';
+let num = 0,
+	result = 0;
 function renderGreetingPage() {
-	 let div = document.createElement('div'),
-	 	tittle_Quiz = document.createElement('h1'),
-	 	text_Quiz = document.createElement('p'),
-	 	textChoise = document.createElement('p'),
-	 	formGreeting = document.createElement('form'),
-	 	button_Quiz = document.createElement('button'),
-	 	question = QUIZ['question for'];
-
-		for(let i = 0; i < question.length; i++){			
-			let	labelInForm = document.createElement('label'),
-				inputInForm = document.createElement('input');
-
-			formGreeting.append(labelInForm);
-			labelInForm.innerHTML = `${question[i]}`;
-			labelInForm.prepend(inputInForm);
-
-					// Устанавливаем атрибуты type и name
-			inputInForm.type = 'radio';
-			inputInForm.name = 'question';
-
-			if(question[i] === 'Main doctor')
-				inputInForm.className = 'choise_MD';
-			else 
-				inputInForm.className = 'choise_RD';
-			inputInForm.classList.add('greeting_input');
-		}
+		let divEl = document.createElement('div'),
+			tittleEl = document.createElement('h2'),
+			textTittleEl = document.createElement('p'),
+			imgEl = document.createElement('img'),
+			choiseTextEl = document.createElement('p'),
+			choiseEl = document.createElement('div'),
+			choiseMD_El = document.createElement('div'),
+			choiseRD_El = document.createElement('div'),
+			btnBlockEl = document.createElement('div'),
+			btnEl = document.createElement('button');
 
 
-	 			// Добавляем в DOM дерево
-	 	document.body.append(div);
-	 	div.append(tittle_Quiz);
-	 	div.append(text_Quiz);
-	 	div.append(textChoise);
-	 	div.append(formGreeting);
-	 	div.append(button_Quiz);
+			mainDiv.append(divEl);
+			divEl.append(tittleEl, textTittleEl, imgEl, choiseTextEl, choiseEl, btnBlockEl);
+			choiseEl.append(choiseMD_El, choiseRD_El);
+			btnBlockEl.append(btnEl);
 
-	 	div.className = 'greeting';
-	 	button_Quiz.innerHTML = 'Далее';
-		tittle_Quiz.innerHTML = QUIZ.name;
-		text_Quiz.innerHTML = QUIZ['tittle quiz'];
-		textChoise.innerHTML = QUIZ['choise quiz'];
+			tittleEl.innerText = QUIZ.name;
+			textTittleEl.innerText = QUIZ['tittle quiz'];
+			choiseTextEl.innerText = QUIZ['choise quiz'];
+			choiseMD_El.innerText = QUIZ['question for'][0];
+			choiseRD_El.innerText = QUIZ['question for'][1];
+			btnEl.innerText = 'Начать тест';
+			imgEl.src = 'https://images.pexels.com/photos/1170979/pexels-photo-1170979.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260';
 
-
-		let choise = div.querySelectorAll('input'),
-			choise_MD = choise[0],
-			choise_RD = choise[1];
-
+			divEl.classList.add('main_tittle');
+			choiseEl.classList.add('main_tittle--choises');
+			choiseMD_El.className = 'choise';
+			choiseRD_El.className = 'choise';
 
 
-		if(choise_MD.checked == false && choise_RD.checked == false)
-			button_Quiz.disabled = true;
+		if(!divEl.querySelector('.checked'))
+			btnBlockEl.hidden = true;
 
-				// при клике на один элемент установить checked в тру, а для другого input  checked в false
-		choise_MD.addEventListener('click', function() {
-			button_Quiz.disabled = false;
-			choise_MD.checked = true;
+		choiseMD_El.addEventListener('click', function() {
+			btnBlockEl.hidden = false;
+			choiseMD_El.className = 'checked MD';
+			if(choiseRD_El)
+				choiseRD_El.className = 'choise';
 		});
 
-		choise_RD.addEventListener('click', function(){
-			button_Quiz.disabled = false;
-			choise_RD.checked = true;
+		choiseRD_El.addEventListener('click', function() {
+			btnBlockEl.hidden = false;
+			choiseRD_El.className = 'checked RD';
+			if(choiseMD_El)
+				choiseMD_El.className = 'choise';
 		});
 
-
-
-		console.log('Md:' + choise_MD.checked, 'RD:' + choise_RD.checked);
-		
-			// При клике на кнопку запускаем ф-ю отрисовки вопроса
-		button_Quiz.addEventListener('click',function (){
-			div.remove();
-			renderQuestions();
-		});
-}
-
-function renderQuestions () {
-	let divEl = document.createElement('div'),
-		numOfQuestion = document.createElement('p'),
-		tittleQuestion = document.createElement('p'),
-		imgEl = document.createElement('img'),
-		formEl = document.createElement('form'),
-		buttonEl = document.createElement('button'),
-		question = MD_Qustions[num].answer;
-
-
-				// Добавление в DOM дерево
-		document.body.append(divEl);
-		divEl.append(numOfQuestion);
-		divEl.append(tittleQuestion);
-		divEl.append(imgEl);
-		divEl.append(formEl);
-		divEl.append(buttonEl);
-
-
-		numOfQuestion.innerHTML = `${MD_Qustions[num].numberOfQuestion}/${Object.keys(MD_Qustions).length}`;
-		tittleQuestion.innerHTML = `${MD_Qustions[num]['title question']}`;
-		buttonEl.innerHTML = 'Далее';
-
-		imgEl.setAttribute('src', 'https://ukranews.com/upload/news/2017/10/19/57f63e70074c7-med05_1200.jpg');
-		imgEl.setAttribute('alt', 'medical_instruments');
-
-				// Создание вопроса
-		for(let i = 0; i < question.length; i++){
-			let divInForm = document.createElement('div'),
-				labelInForm = document.createElement('label'),
-				inputInForm = document.createElement('input');
-
-			formEl.append(divInForm);
-			divInForm.append(labelInForm);
-			labelInForm.innerHTML = `${question[i]}`;
-			labelInForm.prepend(inputInForm);
-
-					// Устанавливаем атрибуты type и name
-			inputInForm.type = 'radio';
-			inputInForm.name = 'question';
-		}
-
-
-		buttonEl.addEventListener('click', function() {
+		btnEl.addEventListener('click', function(){
 			divEl.remove();
-			renderQuestions();
+			
+			if(divEl.querySelector('.RD')){
+				renderQuestions(RD_Questions);
+			}
+			else
+				renderQuestions(MD_Questions);
 		});
+}		
 
-		divEl.className = 'main_doctor';
-		num++;
+function renderQuestions(array) {
+			let currentQuestion = num,
+			 	numberOfQuestions = array.length;
+
+
+			let divEl = document.createElement('div'),
+				numberOfQuestionEl = document.createElement('p'),
+				questionEl = document.createElement('p'),
+				imgEl = document.createElement('img'),
+				answersEl = document.createElement('div'),
+				btnContainerEl = document.createElement('div'),
+				btnEl = document.createElement('button');
+				
+
+				mainDiv.append(divEl);
+				divEl.append(numberOfQuestionEl,questionEl, imgEl, answersEl, btnContainerEl);
+				btnContainerEl.append(btnEl);
+
+				divEl.className = 'page_questions';	
+				numberOfQuestionEl.className = 'number_of_question';
+				imgEl.src = 'https://images.pexels.com/photos/721166/pexels-photo-721166.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260';
+				
+				numberOfQuestionEl.innerText = `${currentQuestion+1} \\ ${numberOfQuestions}`;
+				questionEl.innerText = array[currentQuestion]['title question'];
+				btnEl.innerText = 'Дальше';			
+					
+
+				if(!divEl.querySelector('.error') || !divEl.querySelector('.succes'))
+					btnContainerEl.hidden = true;
+
+				// создание непостредственно вопросов
+				for(let key in array[currentQuestion]['answer']) {
+					let answer = document.createElement('div'),
+						correctAnswer = array[currentQuestion]['correct answer'],
+						nodeCorrectAnswer = document.getElementById(correctAnswer);
+
+					answersEl.append(answer);
+					answer.innerText = array[currentQuestion]['answer'][key];
+					answer.className = 'choise';
+					answer.id = key;
+
+
+					// события при выборе одного из ответов
+					answer.addEventListener('click', function(){
+						btnContainerEl.hidden = false;
+						answersEl.classList.add('disable');
+						if( correctAnswer === key){
+							answer.className = 'succes';
+							++result;
+						}
+						else {
+							answer.className = 'error';
+							answer.innerText += `\n Ошибка ёпта`;
+							nodeCorrectAnswer.className = 'succes';
+						}
+					});
+				}
+
+
+			btnEl.addEventListener('click', function(){
+				divEl.remove();
+				if (num < numberOfQuestions - 1) {
+					renderQuestions(array,++num);
+				}
+				else {
+					renderResults(array,result);
+				}
+			});
 }
+function renderResults(array,sumResult) {
+	let divEl = document.createElement('div'),
+		tittleEl = document.createElement('h2'),
+		resultEl = document.createElement('h2'),
+		imgEl = document.createElement('img'),
+		choiseEl = document.createElement('div'),
+		btnRetryContainerEl = document.createElement('div'),
+		btnRetryEl = document.createElement('button'),
+		btnEndTestContainerEl = document.createElement('div'),
+		btnEndTestEl = document.createElement('button');
 
+		mainDiv.append(divEl);
+		divEl.append(tittleEl);
+		divEl.append(resultEl);
+		divEl.append(imgEl);
+		divEl.append(choiseEl);
+
+		choiseEl.append(btnRetryContainerEl);
+		btnRetryContainerEl.append(btnRetryEl);
+
+		choiseEl.append(btnEndTestContainerEl);
+		btnEndTestContainerEl.append(btnEndTestEl);
+		imgEl.src = 'https://images.pexels.com/photos/1089550/pexels-photo-1089550.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260';
+		divEl.className = 'page_result';
+		resultEl.className = 'page_result--results';
+		choiseEl.className = 'result_choise';
+		tittleEl.innerText = 'Ваш результат';
+		resultEl.innerText = `${sumResult} \\ ${array.length}`;
+		btnRetryEl.innerText = 'Повторить тест';
+		btnEndTestEl.innerText = 'Завершить тест';
+		btnRetryEl.addEventListener('click',function (){
+			divEl.remove();
+			num = 0;
+			result = 0;
+			renderGreetingPage();
+		});
+		btnEndTestEl.addEventListener('click', function(){
+			divEl.remove();
+			haveANiceDay();
+		});
+}
+function haveANiceDay () {
+	let titleFinish = document.createElement('h2');
+
+	mainDiv.append(titleFinish);
+	titleFinish.innerText = 'Have a nice day';
+	titleFinish.className = 'finish';
+}
+function sortRandom (a,b) {
+	return Math.random() - 0.6;
+}
 
 renderGreetingPage();
+

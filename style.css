@@ -1,88 +1,144 @@
 * {
 	box-sizing: border-box;
 }
-.main_doctor,
-.main_doctor2 {
-	border: 1px solid red;
-	text-align: center;
-	margin-bottom: 20px;
+body,html {
+  margin: 0;
+  padding: 0;
+  font-size: 17px;
+  font-family: Helvetica , sans-serif;
+  background: url(https://images.pexels.com/photos/159621/open-book-library-education-read-159621.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
+  background-size: 100vw 120vh;
 }
-.regular_doctor {
-	border: 1px solid red;
-	text-align: center;
-}
-.greeting {
-	width: 500px;
-	margin: 0 auto;
-	border: 1px solid red;
-	margin-bottom: 20px;
-	text-align: center;
-}
-
-.greeting_input {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-
-  border-radius: 50%;
-  width: 16px;
-  height: 16px;
-
-  border: 1px solid #999;
-  transition: 0.2s all linear;
-  outline: none;
-  margin-right: 5px;
-
-  position: relative;
-  top: 4px;
-}
-.greeting_input:checked {
-  border: 3px solid green;
-}
-button {
-	margin-top: 20px;
-	width: 150px;
-	height: 30px;
-	font-size: 1.1em;
-	margin-bottom: 20px;
-}
-
-.MD__form__Q1 {
-	display: flex;
-	flex-direction: column;
-}
-
-.MD__form__Q1--answer input {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-
-  border-radius: 50%;
-  width: 16px;
-  height: 16px;
-
-  border: 1px solid #999;
-  transition: 0.2s all linear;
-  outline: none;
-  margin-right: 5px;
-
-  position: relative;
-  top: 4px;
-}
-
-
-.MD__form__Q1--answer .succes {
-	border: 3px solid green;
-}
-.MD__form__Q1--answer .wrong {
-	border: 3px solid red;
-}
-.MD__form__Q1--answer input:checked {
-	border: 3px solid green;
+h2 {
+  margin-top: 0;
 }
 
 img {
-	display: block;
-	width: 500px;
-	margin: 0 auto;
+  display: block;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
 }
+button {
+  display: block;
+  margin: 20px auto 10px auto;
+  width: 200px;
+  height: 45px;
+  font-size: 1.2em;
+  background-color: rgba(21,96,62,0.8);
+  outline: none;
+  border-radius: 5px;
+  color: white;
+  border-width: 0;
+  cursor: pointer;
+  position: relative;
+}
+
+.main_wrapper {
+ padding-top: 5px;
+}
+.main_tittle,
+.page_questions,
+.page_result,
+.finish {
+  max-width: 550px;
+  margin: 20px auto;
+  text-align: center;
+  background-color: rgba(255,255,255,0.87);
+  padding: 20px;
+}
+.finish {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+.main_tittle--choises {
+  display:  flex;
+  justify-content: space-evenly;
+}
+.choise,
+.checked,
+.succes,
+.error{
+  position: relative;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-left: 20px;
+  cursor: pointer;
+  text-align: start;
+}
+
+.choise:before {
+  position: absolute;
+  content: '';
+  width: 22px;
+  height: 22px;
+  left: -10px;
+  border-radius: 50%;
+  border: 1px solid #d99a4f;
+  box-sizing: border-box;
+}
+
+.choise:hover:before {
+  transition: 0.2s linear;
+  border: 3px solid #d99a4f;
+}
+
+.checked,
+.succes,
+.error {
+  cursor: default;
+}
+
+.checked:before {
+  position: absolute;
+  content: '';
+  width: 22px;
+  height: 22px;
+  left: -10px;
+  border-radius: 50%;
+  border: 1px solid white;
+  box-sizing: border-box;
+  background: #d99a4f;
+  transition: 0.3s linear;
+}
+.page_questions .choise,
+.page_questions .succes,
+.page_questions .error{
+  padding-top: 15px;
+}
+
+.succes:before {
+  position: absolute;
+  content: '';
+  width: 22px;
+  height: 22px;
+  left: -10px;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z" stroke-width="1" stroke="green" ></path></svg>') center center no-repeat;
+}
+
+.error:before {
+  position: absolute;
+  content: '';
+  width: 22px;
+  height: 22px;
+  left: -10px;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><line x1="4" y1="4" x2="20" y2="20" style="stroke-width: 2px; stroke: rgb(200, 0, 0);"></line><line x1="4" y1="20" x2="20" y2="4" style="stroke-width: 2px; stroke: rgb(200, 0, 0);"></line></svg>');
+  transition: 0.3s linear;
+}
+.result_choise {
+  display: flex;
+  justify-content: space-around;
+}
+.page_result--results {
+  color: green;
+}
+
+.disable {
+    pointer-events: none;
+}
+
