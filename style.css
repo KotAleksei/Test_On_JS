@@ -42,13 +42,14 @@ button {
 .page_result,
 .finish {
   max-width: 550px;
+  width: 80%;
   margin: 20px auto;
   text-align: center;
   background-color: rgba(255,255,255,0.87);
   padding: 20px;
 }
 .finish {
-  width: 100%;
+  width: 80%;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -142,3 +143,8 @@ button {
     pointer-events: none;
 }
 
+@media (max-width: 560px) {
+  .result_choise {
+    flex-direction: column;
+  }
+}
