@@ -7,7 +7,8 @@ body,html {
   font-size: 17px;
   font-family: Helvetica , sans-serif;
   background: url(https://images.pexels.com/photos/159621/open-book-library-education-read-159621.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
-  background-size: 100vw 120vh;
+  background-size: cover;
+  min-height: 100vh;
 }
 h2 {
   margin-top: 0;
