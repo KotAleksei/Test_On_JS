@@ -112,195 +112,194 @@ MD_Questions = [
 		'correct answer': 'a'
 	}
 		];
-
-let mainDiv = document.createElement('div');
-document.body.append(mainDiv);
-mainDiv.className = 'main_wrapper';
-let num = 0,
-	result = 0;
-function renderGreetingPage() {
-		let divEl = document.createElement('div'),
-			tittleEl = document.createElement('h2'),
-			textTittleEl = document.createElement('p'),
-			imgEl = document.createElement('img'),
-			choiseTextEl = document.createElement('p'),
-			choiseEl = document.createElement('div'),
-			choiseMD_El = document.createElement('div'),
-			choiseRD_El = document.createElement('div'),
-			btnBlockEl = document.createElement('div'),
-			btnEl = document.createElement('button');
-
-
-			mainDiv.append(divEl);
-			divEl.append(tittleEl, textTittleEl, imgEl, choiseTextEl, choiseEl, btnBlockEl);
-			choiseEl.append(choiseMD_El, choiseRD_El);
-			btnBlockEl.append(btnEl);
-
-			tittleEl.innerText = QUIZ.name;
-			textTittleEl.innerText = QUIZ['tittle quiz'];
-			choiseTextEl.innerText = QUIZ['choise quiz'];
-			choiseMD_El.innerText = QUIZ['question for'][0];
-			choiseRD_El.innerText = QUIZ['question for'][1];
-			btnEl.innerText = 'Начать тест';
-			imgEl.src = 'https://images.pexels.com/photos/1170979/pexels-photo-1170979.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260';
-
-			divEl.classList.add('main_tittle');
-			choiseEl.classList.add('main_tittle--choises');
-			choiseMD_El.className = 'choise';
-			choiseRD_El.className = 'choise';
-
-
-		if(!divEl.querySelector('.checked'))
-			btnBlockEl.hidden = true;
-
-		choiseMD_El.addEventListener('click', function() {
-			btnBlockEl.hidden = false;
-			choiseMD_El.className = 'checked MD';
-			if(choiseRD_El)
-				choiseRD_El.className = 'choise';
-		});
-
-		choiseRD_El.addEventListener('click', function() {
-			btnBlockEl.hidden = false;
-			choiseRD_El.className = 'checked RD';
-			if(choiseMD_El)
-				choiseMD_El.className = 'choise';
-		});
-
-		btnEl.addEventListener('click', function(){
-			divEl.remove();
-			
-			if(divEl.querySelector('.RD')){
-				renderQuestions(RD_Questions);
-			}
-			else
-				renderQuestions(MD_Questions);
-		});
-}		
-
-function renderQuestions(array) {
-			let currentQuestion = num,
-			 	numberOfQuestions = array.length,
-			 	correctAnswer = array[currentQuestion]['correct answer'],
-			 	textAfterFails = array[currentQuestion].answer[correctAnswer];
-
-			 	
-
-
+function createQUIZ () {
+	let mainDiv = document.createElement('div');
+	document.body.append(mainDiv);
+	mainDiv.className = 'main_wrapper';
+	let num = 0,
+		result = 0;
+	function renderGreetingPage() {
 			let divEl = document.createElement('div'),
-				numberOfQuestionEl = document.createElement('p'),
-				questionEl = document.createElement('p'),
+				tittleEl = document.createElement('h2'),
+				textTittleEl = document.createElement('p'),
 				imgEl = document.createElement('img'),
-				answersEl = document.createElement('div'),
-				btnContainerEl = document.createElement('div'),
+				choiseTextEl = document.createElement('p'),
+				choiseEl = document.createElement('div'),
+				choiseMD_El = document.createElement('div'),
+				choiseRD_El = document.createElement('div'),
+				btnBlockEl = document.createElement('div'),
 				btnEl = document.createElement('button');
-				
+
 
 				mainDiv.append(divEl);
-				divEl.append(numberOfQuestionEl,questionEl, imgEl, answersEl, btnContainerEl);
-				btnContainerEl.append(btnEl);
+				divEl.append(tittleEl, textTittleEl, imgEl, choiseTextEl, choiseEl, btnBlockEl);
+				choiseEl.append(choiseMD_El, choiseRD_El);
+				btnBlockEl.append(btnEl);
 
-				divEl.className = 'page_questions';	
-				numberOfQuestionEl.className = 'number_of_question';
-				imgEl.src = 'https://images.pexels.com/photos/721166/pexels-photo-721166.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260';
-				
-				numberOfQuestionEl.innerText = `${currentQuestion+1} \\ ${numberOfQuestions}`;
-				questionEl.innerText = array[currentQuestion]['title question'];
-				btnEl.innerText = 'Дальше';			
-					
+				tittleEl.innerText = QUIZ.name;
+				textTittleEl.innerText = QUIZ['tittle quiz'];
+				choiseTextEl.innerText = QUIZ['choise quiz'];
+				choiseMD_El.innerText = QUIZ['question for'][0];
+				choiseRD_El.innerText = QUIZ['question for'][1];
+				btnEl.innerText = 'Начать тест';
+				imgEl.src = 'https://images.pexels.com/photos/1170979/pexels-photo-1170979.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260';
 
-				if(!divEl.querySelector('.error') || !divEl.querySelector('.succes'))
-					btnContainerEl.hidden = true;
+				divEl.classList.add('main_tittle');
+				choiseEl.classList.add('main_tittle--choises');
+				choiseMD_El.className = 'choise';
+				choiseRD_El.className = 'choise';
 
-				// создание непостредственно вопросов
-				for(let key in array[currentQuestion]['answer']) {
-					let answer = document.createElement('div');
-						
-					answersEl.append(answer);
-					answer.innerText = array[currentQuestion]['answer'][key];
-					answer.className = 'choise';
-					answer.id = key;
 
-					// события при выборе одного из ответов
-					answer.addEventListener('click', function(){
-						btnContainerEl.hidden = false;
-						answersEl.classList.add('disable');
+			if(!divEl.querySelector('.checked'))
+				btnBlockEl.hidden = true;
 
-						if( correctAnswer === key){
-							answer.className = 'succes';
-							++result;
-						}
-						else {
-							answer.className = 'error';
-							nodeCorrectAnswer.className = 'succes';
-							answer.innerText += `\n Ошибка  \n Правильный ответ ${textAfterFails}`;
-							
-						}
-					});
-				}
+			choiseMD_El.addEventListener('click', function() {
+				btnBlockEl.hidden = false;
+				choiseMD_El.className = 'checked MD';
+				if(choiseRD_El)
+					choiseRD_El.className = 'choise';
+			});
 
-				let nodeCorrectAnswer = document.getElementById(correctAnswer);
-
+			choiseRD_El.addEventListener('click', function() {
+				btnBlockEl.hidden = false;
+				choiseRD_El.className = 'checked RD';
+				if(choiseMD_El)
+					choiseMD_El.className = 'choise';
+			});
 
 			btnEl.addEventListener('click', function(){
 				divEl.remove();
-				if (num < numberOfQuestions - 1) {
-					renderQuestions(array,++num);
+				
+				if(divEl.querySelector('.RD')){
+					renderQuestions(RD_Questions);
 				}
-				else {
-					renderResults(array,result);
-				}
+				else
+					renderQuestions(MD_Questions);
 			});
+	}		
+
+	function renderQuestions(array) {
+				let currentQuestion = num,
+				 	numberOfQuestions = array.length,
+				 	correctAnswer = array[currentQuestion]['correct answer'],
+				 	textAfterFails = array[currentQuestion].answer[correctAnswer];
+
+				 	
+
+
+				let divEl = document.createElement('div'),
+					numberOfQuestionEl = document.createElement('p'),
+					questionEl = document.createElement('p'),
+					imgEl = document.createElement('img'),
+					answersEl = document.createElement('div'),
+					btnContainerEl = document.createElement('div'),
+					btnEl = document.createElement('button');
+					
+
+					mainDiv.append(divEl);
+					divEl.append(numberOfQuestionEl,questionEl, imgEl, answersEl, btnContainerEl);
+					btnContainerEl.append(btnEl);
+
+					divEl.className = 'page_questions';	
+					numberOfQuestionEl.className = 'number_of_question';
+					imgEl.src = 'https://images.pexels.com/photos/721166/pexels-photo-721166.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260';
+					
+					numberOfQuestionEl.innerText = `${currentQuestion+1} \\ ${numberOfQuestions}`;
+					questionEl.innerText = array[currentQuestion]['title question'];
+					btnEl.innerText = 'Дальше';			
+						
+
+					if(!divEl.querySelector('.error') || !divEl.querySelector('.succes'))
+						btnContainerEl.hidden = true;
+
+					// создание непостредственно вопросов
+					for(let key in array[currentQuestion]['answer']) {
+						let answer = document.createElement('div');
+							
+						answersEl.append(answer);
+						answer.innerText = array[currentQuestion]['answer'][key];
+						answer.className = 'choise';
+						answer.id = key;
+
+						// события при выборе одного из ответов
+						answer.addEventListener('click', function(){
+							btnContainerEl.hidden = false;
+							answersEl.classList.add('disable');
+
+							if( correctAnswer === key){
+								answer.className = 'succes';
+								++result;
+							}
+							else {
+								answer.className = 'error';
+								nodeCorrectAnswer.className = 'succes';
+								answer.innerText += `\n Ошибка  \n Правильный ответ ${textAfterFails}`;
+								
+							}
+						});
+					}
+
+					let nodeCorrectAnswer = document.getElementById(correctAnswer);
+
+
+				btnEl.addEventListener('click', function(){
+					divEl.remove();
+					if (num < numberOfQuestions - 1) {
+						renderQuestions(array,++num);
+					}
+					else {
+						renderResults(array,result);
+					}
+				});
+	}
+	function renderResults(array,sumResult) {
+		let divEl = document.createElement('div'),
+			tittleEl = document.createElement('h2'),
+			resultEl = document.createElement('h2'),
+			imgEl = document.createElement('img'),
+			choiseEl = document.createElement('div'),
+			btnRetryContainerEl = document.createElement('div'),
+			btnRetryEl = document.createElement('button'),
+			btnEndTestContainerEl = document.createElement('div'),
+			btnEndTestEl = document.createElement('button');
+
+			mainDiv.append(divEl);
+			divEl.append(tittleEl);
+			divEl.append(resultEl);
+			divEl.append(imgEl);
+			divEl.append(choiseEl);
+
+			choiseEl.append(btnRetryContainerEl);
+			btnRetryContainerEl.append(btnRetryEl);
+
+			choiseEl.append(btnEndTestContainerEl);
+			btnEndTestContainerEl.append(btnEndTestEl);
+			imgEl.src = 'https://images.pexels.com/photos/1089550/pexels-photo-1089550.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260';
+			divEl.className = 'page_result';
+			resultEl.className = 'page_result--results';
+			choiseEl.className = 'result_choise';
+			tittleEl.innerText = 'Ваш результат';
+			resultEl.innerText = `${sumResult} \\ ${array.length}`;
+			btnRetryEl.innerText = 'Повторить тест';
+			btnEndTestEl.innerText = 'Завершить тест';
+			btnRetryEl.addEventListener('click',function (){
+				divEl.remove();
+				num = 0;
+				result = 0;
+				renderGreetingPage();
+			});
+			btnEndTestEl.addEventListener('click', function(){
+				divEl.remove();
+				haveANiceDay();
+			});
+	}
+	function haveANiceDay () {
+		let titleFinish = document.createElement('h2');
+
+		mainDiv.append(titleFinish);
+		titleFinish.innerText = 'Have a nice day';
+		titleFinish.className = 'finish';
+	}
+	renderGreetingPage();
 }
-function renderResults(array,sumResult) {
-	let divEl = document.createElement('div'),
-		tittleEl = document.createElement('h2'),
-		resultEl = document.createElement('h2'),
-		imgEl = document.createElement('img'),
-		choiseEl = document.createElement('div'),
-		btnRetryContainerEl = document.createElement('div'),
-		btnRetryEl = document.createElement('button'),
-		btnEndTestContainerEl = document.createElement('div'),
-		btnEndTestEl = document.createElement('button');
-
-		mainDiv.append(divEl);
-		divEl.append(tittleEl);
-		divEl.append(resultEl);
-		divEl.append(imgEl);
-		divEl.append(choiseEl);
-
-		choiseEl.append(btnRetryContainerEl);
-		btnRetryContainerEl.append(btnRetryEl);
-
-		choiseEl.append(btnEndTestContainerEl);
-		btnEndTestContainerEl.append(btnEndTestEl);
-		imgEl.src = 'https://images.pexels.com/photos/1089550/pexels-photo-1089550.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260';
-		divEl.className = 'page_result';
-		resultEl.className = 'page_result--results';
-		choiseEl.className = 'result_choise';
-		tittleEl.innerText = 'Ваш результат';
-		resultEl.innerText = `${sumResult} \\ ${array.length}`;
-		btnRetryEl.innerText = 'Повторить тест';
-		btnEndTestEl.innerText = 'Завершить тест';
-		btnRetryEl.addEventListener('click',function (){
-			divEl.remove();
-			num = 0;
-			result = 0;
-			renderGreetingPage();
-		});
-		btnEndTestEl.addEventListener('click', function(){
-			divEl.remove();
-			haveANiceDay();
-		});
-}
-function haveANiceDay () {
-	let titleFinish = document.createElement('h2');
-
-	mainDiv.append(titleFinish);
-	titleFinish.innerText = 'Have a nice day';
-	titleFinish.className = 'finish';
-}
-
-
-renderGreetingPage();
-
+createQUIZ();
